@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      location: /Users/junsanghwang/upload-files/
+      max-request-size: 1000MB
+      max-file-size: 1000MB
+
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+    hibernate:
+      ddl-auto: update
+  main:
+    allow-circular-references: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
