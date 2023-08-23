@@ -2,6 +2,10 @@ server:
   port: 8080
 
 spring:
+  application:
+    name: sprinb-vue-board
+  profiles:
+    active: local
   servlet:
     multipart:
       enabled: true
