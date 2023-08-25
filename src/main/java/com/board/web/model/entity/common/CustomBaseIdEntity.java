@@ -9,9 +9,11 @@ import org.springframework.data.domain.Persistable;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 @Getter
-public class CustomBaseIdEntity implements Persistable<String> {
+@MappedSuperclass
+public abstract class CustomBaseIdEntity implements Persistable<String> {
     @Id
     @Column(name = "id")
     @GeneratedValue(generator = "idGenerator")
