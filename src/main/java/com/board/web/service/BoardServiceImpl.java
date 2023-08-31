@@ -39,13 +39,11 @@ public class BoardServiceImpl implements BoardService{
     private BoardEntity getBoardEntity(BoardSaveRequest request) {
         BoardEntity entity = new BoardEntity();
         entity.setTitle(request.getTitle());
-        entity.setContent(request.getContent());
         return entity;
     }
 
     private void updateBoardEntity(BoardEntity entity, BoardUpdateRequest request) {
         entity.setTitle(request.getTitle());
-        entity.setContent(request.getContent());
     }
 
 }
