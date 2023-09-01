@@ -6,5 +6,5 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class BoardSaveRequest {
-    private String title;
+    private String name;
 }

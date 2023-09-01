@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Table(name = "board")
 public class BoardEntity extends CreationTimestampEntity {
 
-    private String title;
+    private String name;
 
     @Enumerated(EnumType.STRING)
     private BoardActivationStatus status;
