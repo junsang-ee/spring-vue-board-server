@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "post")
-public class PostEntity extends CreationTimestampEntity{
+public class PostEntity extends ModificationTimestampEntity{
 
     private String title;
 
