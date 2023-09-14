@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "board")
-public class BoardEntity extends CreationTimestampEntity {
+public class BoardEntity extends AbstractBaseEntity {
 
     private String name;
 

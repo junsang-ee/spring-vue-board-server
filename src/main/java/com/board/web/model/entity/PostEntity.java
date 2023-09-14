@@ -12,11 +12,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "post")
-public class PostEntity extends ModificationTimestampEntity{
+public class PostEntity extends AbstractPostEntity {
 
     private String title;
-
-    private String content;
 
     @Enumerated(EnumType.STRING)
     private BoardActivationStatus status;
