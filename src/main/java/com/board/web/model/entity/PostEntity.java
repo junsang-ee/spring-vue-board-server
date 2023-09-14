@@ -19,6 +19,9 @@ public class PostEntity extends AbstractPostEntity {
     @Enumerated(EnumType.STRING)
     private BoardActivationStatus status;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parentBoard", nullable = false)
+    private BoardEntity parentBoard;
     @PrePersist
     public void onPrevisionPersist() {
         this.status = BoardActivationStatus.NORMAL;

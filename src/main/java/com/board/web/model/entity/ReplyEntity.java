@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -13,6 +12,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "reply")
 public class ReplyEntity extends AbstractPostEntity{
-    private String content;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parentPost", nullable = false)
+    private PostEntity parentPost;
 
 }
