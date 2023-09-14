@@ -8,7 +8,6 @@ import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 
-@Getter
 @MappedSuperclass
 public abstract class CustomBaseIdEntity implements Persistable<String> {
     @Id
@@ -17,6 +16,11 @@ public abstract class CustomBaseIdEntity implements Persistable<String> {
     @GenericGenerator(name="idGenerator", strategy = "com.board.web.config.CustomBaseIdGenerator")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String id;
+
+    @Override
+    public String getId() {
+        return id;
+    }
 
     @JsonIgnore
     @Override
