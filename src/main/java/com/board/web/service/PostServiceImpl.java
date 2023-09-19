@@ -14,11 +14,12 @@ public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
 
+    private final BoardService boardService;
     @Override
     @Transactional
     public PostEntity save(PostSaveRequest request, String boardId) {
         PostEntity entity = new PostEntity();
-        setPostEntity(entity, request);
+        setPostEntity(entity, request, boardId);
         return postRepository.save(entity);
     }
 
@@ -29,8 +30,9 @@ public class PostServiceImpl implements PostService {
         );
     }
 
-    private void setPostEntity(PostEntity entity, PostSaveRequest request) {
+    private void setPostEntity(PostEntity entity, PostSaveRequest request, String boardId) {
         entity.setTitle(request.getTitle());
         entity.setContent(request.getContent());
+        entity.setParentBoard(boardService.get(boardId));
     }
 }

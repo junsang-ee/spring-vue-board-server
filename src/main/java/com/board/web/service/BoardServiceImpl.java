@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public BoardEntity get(String boardId) {
         return boardRepository.findById(boardId).orElseThrow(
-                () -> new RuntimeException("Not Found This Board..")
+                () -> new IllegalArgumentException("Not Found This Board..")
         );
     }
 
