@@ -7,7 +7,7 @@ import com.board.web.model.entity.BoardEntity;
 public interface BoardService {
     BoardEntity save(BoardSaveRequest request);
 
-    BoardEntity get(Long boardId);
+    BoardEntity get(String boardId);
 
-    BoardEntity update(Long boardId, BoardUpdateRequest request);
+    BoardEntity update(String boardId, BoardUpdateRequest request);
 }

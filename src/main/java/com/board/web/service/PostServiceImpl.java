@@ -16,7 +16,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional
-    public PostEntity save(PostSaveRequest request) {
+    public PostEntity save(PostSaveRequest request, String boardId) {
         PostEntity entity = new PostEntity();
         setPostEntity(entity, request);
         return postRepository.save(entity);

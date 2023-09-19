@@ -22,7 +22,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public BoardEntity get(Long boardId) {
+    public BoardEntity get(String boardId) {
         return boardRepository.findById(boardId).orElseThrow(
                 () -> new RuntimeException("Not Found This Board..")
         );
@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     @Transactional
-    public BoardEntity update(Long boardId, BoardUpdateRequest request) {
+    public BoardEntity update(String boardId, BoardUpdateRequest request) {
         BoardEntity entity = get(boardId);
         updateBoardEntity(entity, request);
         return boardRepository.save(entity);
