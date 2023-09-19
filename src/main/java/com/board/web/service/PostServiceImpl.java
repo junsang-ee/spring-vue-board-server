@@ -17,13 +17,20 @@ public class PostServiceImpl implements PostService {
     @Override
     @Transactional
     public PostEntity save(PostSaveRequest request) {
-        return postRepository.save(getPostEntity(request));
+        PostEntity entity = new PostEntity();
+        setPostEntity(entity, request);
+        return postRepository.save(entity);
     }
 
-    private PostEntity getPostEntity(PostSaveRequest request) {
-        PostEntity result = new PostEntity();
-        result.setTitle(request.getTitle());
-        result.setContent(request.getContent());
-        return result;
+    @Override
+    public PostEntity get(String postId) {
+        return postRepository.findById(postId).orElseThrow(
+                () -> new IllegalArgumentException("not found the post")
+        );
+    }
+
+    private void setPostEntity(PostEntity entity, PostSaveRequest request) {
+        entity.setTitle(request.getTitle());
+        entity.setContent(request.getContent());
     }
 }

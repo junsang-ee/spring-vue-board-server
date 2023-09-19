@@ -5,4 +5,6 @@ import com.board.web.model.entity.PostEntity;
 
 public interface PostService {
     PostEntity save(PostSaveRequest request);
+
+    PostEntity get(String postId);
 }
