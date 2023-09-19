@@ -1,9 +1,7 @@
 package com.board.web.service;
 
 import com.board.web.model.dto.request.ReplySaveRequest;
-import com.board.web.model.entity.PostEntity;
 import com.board.web.model.entity.ReplyEntity;
-import com.board.web.repository.PostRepository;
 import com.board.web.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
