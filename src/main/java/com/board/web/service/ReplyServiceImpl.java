@@ -16,8 +16,8 @@ public class ReplyServiceImpl implements ReplyService {
 
     private final PostService postService;
 
-    @Transactional
     @Override
+    @Transactional
     public ReplyEntity save(ReplySaveRequest request, String postId) {
         ReplyEntity entity = new ReplyEntity();
         setReplyEntity(entity, request, postId);
