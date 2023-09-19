@@ -16,8 +16,6 @@ public class ReplyServiceImpl implements ReplyService {
 
     private final ReplyRepository replyRepository;
 
-    private final PostRepository postRepository;
-
     private final PostService postService;
 
     @Transactional
