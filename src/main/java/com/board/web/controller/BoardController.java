@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/board")
@@ -38,9 +40,14 @@ public class BoardController {
     }
 
     @PostMapping("/{boardId}/post")
-    public PostEntity savePost(@RequestBody PostSaveRequest request,
-                               @PathVariable String boardId) {
+    public PostEntity savePost(@PathVariable String boardId,
+                               @RequestBody PostSaveRequest request) {
         return postService.save(request, boardId);
+    }
+
+    @GetMapping("/{boardId}/posts")
+    public List<PostEntity> getPosts(@PathVariable String boardId) {
+        return null;
     }
 
 }

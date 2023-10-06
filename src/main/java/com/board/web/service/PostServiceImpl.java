@@ -1,5 +1,6 @@
 package com.board.web.service;
 
+import com.board.web.constants.PostActivationStatus;
 import com.board.web.model.dto.request.PostSaveRequest;
 import com.board.web.model.entity.PostEntity;
 import com.board.web.repository.PostRepository;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -28,6 +30,11 @@ public class PostServiceImpl implements PostService {
         return postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("not found the post")
         );
+    }
+
+    @Override
+    public List<PostEntity> getAllByBoardId(String boardId) {
+        return postRepository.findAllByParentBoardAndActivationStatus(boardId, PostActivationStatus.NORMAL);
     }
 
     private void setPostEntity(PostEntity entity, PostSaveRequest request, String boardId) {
