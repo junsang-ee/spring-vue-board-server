@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<PostEntity, String> {
-    List<PostEntity> findAllByParentBoardAndActivationStatus(String parentBoard, PostActivationStatus status);
+    List<PostEntity> findAllByParentBoardAndStatus(String parentBoard, PostActivationStatus status);
 }

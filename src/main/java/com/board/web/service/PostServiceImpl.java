@@ -34,7 +34,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostEntity> getAllByBoardId(String boardId) {
-        return postRepository.findAllByParentBoardAndActivationStatus(boardId, PostActivationStatus.NORMAL);
+        return postRepository.findAllByParentBoardAndStatus(boardId, PostActivationStatus.NORMAL);
     }
 
     private void setPostEntity(PostEntity entity, PostSaveRequest request, String boardId) {

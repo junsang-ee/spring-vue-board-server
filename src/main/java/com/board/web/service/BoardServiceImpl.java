@@ -1,5 +1,6 @@
 package com.board.web.service;
 
+import com.board.web.constants.BoardActivationStatus;
 import com.board.web.model.dto.request.BoardSaveRequest;
 import com.board.web.model.dto.request.BoardUpdateRequest;
 import com.board.web.model.entity.BoardEntity;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -26,6 +28,11 @@ public class BoardServiceImpl implements BoardService{
         return boardRepository.findById(boardId).orElseThrow(
                 () -> new IllegalArgumentException("Not Found This Board..")
         );
+    }
+
+    @Override
+    public List<BoardEntity> getList() {
+        return boardRepository.findAllByStatus(BoardActivationStatus.NORMAL);
     }
 
     @Override

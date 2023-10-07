@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
+@CrossOrigin("*")
 @RequiredArgsConstructor
 @RequestMapping("/api/board")
 @RestController
@@ -26,6 +27,11 @@ public class BoardController {
     @PostMapping
     public BoardEntity save(@RequestBody BoardSaveRequest request) {
         return boardService.save(request);
+    }
+
+    @GetMapping
+    public List<BoardEntity> getList() {
+        return boardService.getList();
     }
 
     @GetMapping("/{boardId}")
