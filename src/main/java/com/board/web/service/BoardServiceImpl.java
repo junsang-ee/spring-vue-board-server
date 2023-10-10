@@ -3,6 +3,7 @@ package com.board.web.service;
 import com.board.web.constants.BoardActivationStatus;
 import com.board.web.model.dto.request.BoardSaveRequest;
 import com.board.web.model.dto.request.BoardUpdateRequest;
+import com.board.web.model.dto.response.BoardDetailResponse;
 import com.board.web.model.entity.BoardEntity;
 import com.board.web.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -31,8 +33,9 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<BoardEntity> getList() {
-        return boardRepository.findAllByStatus(BoardActivationStatus.NORMAL);
+    public List<BoardDetailResponse> getList() {
+        List<BoardEntity> entities = boardRepository.findAllByStatus(BoardActivationStatus.NORMAL);
+        return getBoardDetailList(entities);
     }
 
     @Override
@@ -51,6 +54,18 @@ public class BoardServiceImpl implements BoardService{
 
     private void updateBoardEntity(BoardEntity entity, BoardUpdateRequest request) {
         entity.setName(request.getTitle());
+    }
+
+    private List<BoardDetailResponse> getBoardDetailList(List<BoardEntity> boardEntities) {
+        return boardEntities.stream().map(this::getBoardDetail).collect(Collectors.toList());
+
+    }
+
+    private BoardDetailResponse getBoardDetail(BoardEntity entity) {
+        return new BoardDetailResponse(
+                entity.getId(),
+                entity.getName()
+        );
     }
 
 }

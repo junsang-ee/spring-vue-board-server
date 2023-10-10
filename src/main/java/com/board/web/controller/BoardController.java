@@ -3,6 +3,7 @@ package com.board.web.controller;
 import com.board.web.model.dto.request.BoardSaveRequest;
 import com.board.web.model.dto.request.BoardUpdateRequest;
 import com.board.web.model.dto.request.PostSaveRequest;
+import com.board.web.model.dto.response.BoardDetailResponse;
 import com.board.web.model.entity.BoardEntity;
 import com.board.web.model.entity.PostEntity;
 import com.board.web.service.BoardService;
@@ -30,7 +31,7 @@ public class BoardController {
     }
 
     @GetMapping
-    public List<BoardEntity> getList() {
+    public List<BoardDetailResponse> getList() {
         return boardService.getList();
     }
 
