@@ -2,6 +2,7 @@ package com.board.web.service;
 
 import com.board.web.constants.PostActivationStatus;
 import com.board.web.model.dto.request.PostSaveRequest;
+import com.board.web.model.dto.response.PostDetailResponse;
 import com.board.web.model.entity.PostEntity;
 import com.board.web.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -33,13 +35,32 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostEntity> getAllByBoardId(String boardId) {
-        return postRepository.findAllByParentBoardAndStatus(boardId, PostActivationStatus.NORMAL);
+    public List<PostDetailResponse> list(String boardId) {
+        List<PostEntity> posts = postRepository.findAllByParentBoardAndStatus(
+                boardId,
+                PostActivationStatus.NORMAL
+        );
+        return getPostDetailList(posts);
     }
 
     private void setPostEntity(PostEntity entity, PostSaveRequest request, String boardId) {
         entity.setTitle(request.getTitle());
         entity.setContent(request.getContent());
         entity.setParentBoard(boardService.get(boardId));
+    }
+
+    private List<PostDetailResponse> getPostDetailList(List<PostEntity> posts) {
+        return posts.stream()
+                .map(this::getPostDetail)
+                .collect(Collectors.toList());
+    }
+
+    private PostDetailResponse getPostDetail(PostEntity entity) {
+        return new PostDetailResponse(
+                entity.getId(),
+                entity.getTitle(),
+                entity.getCreatedBy().getUserName(),
+                entity.getCreatedAt()
+        );
     }
 }
