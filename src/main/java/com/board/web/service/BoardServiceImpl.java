@@ -34,7 +34,9 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public List<BoardDetailResponse> getList() {
-        List<BoardEntity> entities = boardRepository.findAllByStatus(BoardActivationStatus.NORMAL);
+        List<BoardEntity> entities = boardRepository.findAllByStatus(
+                BoardActivationStatus.NORMAL
+        );
         return getBoardDetailList(entities);
     }
 
@@ -57,7 +59,9 @@ public class BoardServiceImpl implements BoardService{
     }
 
     private List<BoardDetailResponse> getBoardDetailList(List<BoardEntity> boardEntities) {
-        return boardEntities.stream().map(this::getBoardDetail).collect(Collectors.toList());
+        return boardEntities.stream()
+                .map(this::getBoardDetail)
+                .collect(Collectors.toList());
 
     }
 
