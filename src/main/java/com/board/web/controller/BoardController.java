@@ -4,6 +4,7 @@ import com.board.web.model.dto.request.BoardSaveRequest;
 import com.board.web.model.dto.request.BoardUpdateRequest;
 import com.board.web.model.dto.request.PostSaveRequest;
 import com.board.web.model.dto.response.BoardDetailResponse;
+import com.board.web.model.dto.response.PostDetailResponse;
 import com.board.web.model.entity.BoardEntity;
 import com.board.web.model.entity.PostEntity;
 import com.board.web.service.BoardService;
@@ -53,8 +54,8 @@ public class BoardController {
     }
 
     @GetMapping("/{boardId}/posts")
-    public List<PostEntity> getPosts(@PathVariable String boardId) {
-        return null;
+    public List<PostDetailResponse> getPosts(@PathVariable String boardId) {
+        return postService.list(boardId);
     }
 
 }
