@@ -3,6 +3,7 @@ package com.board.web.service;
 import com.board.web.constants.PostActivationStatus;
 import com.board.web.model.dto.request.PostSaveRequest;
 import com.board.web.model.dto.response.PostDetailResponse;
+import com.board.web.model.entity.BoardEntity;
 import com.board.web.model.entity.PostEntity;
 import com.board.web.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,8 +37,9 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDetailResponse> list(String boardId) {
+        BoardEntity boardEntity = boardService.get(boardId);
         List<PostEntity> posts = postRepository.findAllByParentBoardAndStatus(
-                boardId,
+                boardEntity,
                 PostActivationStatus.NORMAL
         );
         return getPostDetailList(posts);
@@ -59,7 +61,7 @@ public class PostServiceImpl implements PostService {
         return new PostDetailResponse(
                 entity.getId(),
                 entity.getTitle(),
-                entity.getCreatedBy().getUserName(),
+                null,
                 entity.getCreatedAt()
         );
     }
