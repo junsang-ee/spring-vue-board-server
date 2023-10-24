@@ -66,9 +66,14 @@ public class BoardServiceImpl implements BoardService{
     }
 
     private BoardDetailResponse getBoardDetail(BoardEntity entity) {
+        int postCount = 0;
+        if (entity.getPosts() != null && !entity.getPosts().isEmpty()) {
+            postCount = entity.getPosts().size();
+        }
         return new BoardDetailResponse(
                 entity.getId(),
-                entity.getName()
+                entity.getName(),
+                postCount
         );
     }
 

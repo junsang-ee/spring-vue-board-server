@@ -20,8 +20,5 @@ public class PostEntity extends AbstractPostEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parentBoard", nullable = false)
     private BoardEntity parentBoard;
-//    @PrePersist
-//    public void onPrevisionPersist() {
-//        super.setStatus(PostActivationStatus.NORMAL);\
-//    }
+
 }

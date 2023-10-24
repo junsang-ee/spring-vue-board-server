@@ -10,4 +10,5 @@ import lombok.Setter;
 public class BoardDetailResponse {
     private String boardId;
     private String name;
+    private int postCount;
 }
