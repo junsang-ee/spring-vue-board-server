@@ -1,7 +1,5 @@
 package com.board.web.model.entity;
 
-import com.board.web.constants.BoardActivationStatus;
-import com.board.web.constants.PostActivationStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
